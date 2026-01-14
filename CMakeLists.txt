@@ -24,6 +24,6 @@ set(FSS_PATH "/path/to/EzPC/FSS")
 include_directories(${FSS_PATH}/src)
 include_directories(${FSS_PATH}/src/deps/cryptoTools)
 
-add_executable(TFssformer main.cpp ${TEST_SOURCES})
+add_executable(Triforce main.cpp ${TEST_SOURCES})
 
-target_link_libraries(TFssformer app_lib common_lib crypto_lib model_lib OpenMP::OpenMP_CXX  ${FSS_PATH}/build/lib/libfss.a ssl crypto pthread cnpy)
+target_link_libraries(Triforce app_lib common_lib crypto_lib model_lib OpenMP::OpenMP_CXX  ${FSS_PATH}/build/lib/libfss.a ssl crypto pthread cnpy)
