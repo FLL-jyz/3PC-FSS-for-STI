@@ -1,6 +1,6 @@
 # Application in PPML
 
-TFssformer is a project focused on maliciously secure three-party computation (3PC) for Transformer model inference.
+This is project focuses on secure three-party computation (3PC) for Transformer model inference based on our 3PC FSS.
 
 ## Directory Structure
 
