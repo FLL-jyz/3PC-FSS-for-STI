@@ -1,4 +1,4 @@
-# Application in PPML
+# 3PC FSS and its application in PPML
 
 This is project focuses on secure three-party computation (3PC) for Transformer model inference based on our 3PC FSS.
 
