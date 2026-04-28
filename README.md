@@ -1,4 +1,4 @@
-# Triforce
+# Application in PPML
 
 TFssformer is a project focused on maliciously secure three-party computation (3PC) for Transformer model inference.
 
