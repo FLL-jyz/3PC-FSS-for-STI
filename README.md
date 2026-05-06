@@ -1,4 +1,4 @@
-# 3PC FSS and its application in PPML
+# 3PC FSS for Secure Transformer Inference (STI)
 
 This is project focuses on secure three-party computation (3PC) for Transformer model inference based on our 3PC FSS.
 
