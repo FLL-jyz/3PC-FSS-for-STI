@@ -12,6 +12,14 @@ This is project focuses on secure three-party computation (3PC) for Transformer 
 *   **`external/`**: External dependencies (e.g., `cnpy`).
 *   **`script/`**: Contains helper scripts like `eval_bash.sh`. 
 *   **`main.cpp`**: The main entry point for the executable.
+*   **`baseline/`**: Additional implementations used for comparison:
+    *   **`baseline/Sigma/`**: Sigma implementation and evaluation code.
+    *   **`baseline/Puma/`**: Puma baseline implementation and evaluation code.
+    *   **`baseline/Shaft/`**: Shaft implementation and evaluation code.
+
+Each baseline is self-contained and has its own `README.md` with build and
+evaluation instructions. Build a baseline from its own directory rather than
+from the repository root.
 
 ## Requirements
 
@@ -109,5 +117,3 @@ For inference tests (`llmacc`, `llm3pc`, etc.), you need to prepare model and da
 2.  Shares should be placed in:
     *   `data/model_shares/`
     *   `data/data_shares/`
-
-
