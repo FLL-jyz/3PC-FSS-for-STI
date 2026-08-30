@@ -4,7 +4,7 @@ show_help() {
     echo "  sh eval_bash.sh <test_name> [party_id]"
     echo
     echo "Description:"
-    echo "  This script builds and optionally runs secure computation tests using sti."
+    echo "  This script builds and optionally runs the Shaft tests."
     echo
     echo "Arguments:"
     echo "  <test_name>     Required unless only building. Choose one of:"

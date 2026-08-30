@@ -51,7 +51,7 @@ mkdir build
 cd ./build
 cmake ..
 make -j
-./sti [test_name] [party_id]
+./shaft [test_name] [party_id]
 ```
 
 2. Use Provided Scripts

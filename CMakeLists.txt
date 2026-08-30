@@ -19,8 +19,12 @@ file(GLOB TEST_SOURCES "tests/*.cpp")
 
 include_directories(${CMAKE_SOURCE_DIR}/application/ ${CMAKE_SOURCE_DIR}/common/ ${CMAKE_SOURCE_DIR}/crypto/ ${CMAKE_SOURCE_DIR}/secure_model/ ${CMAKE_SOURCE_DIR}/external)
 
-# 添加外部头文件路径
-set(FSS_PATH "/path/to/EzPC/FSS")
+# Path to the external FSS dependency. Configure with:
+#   cmake -S . -B build -DFSS_PATH=/path/to/EzPC/FSS
+set(FSS_PATH "" CACHE PATH "Path to the EzPC FSS source tree")
+if(NOT FSS_PATH)
+	message(FATAL_ERROR "FSS_PATH is required; pass -DFSS_PATH=/path/to/EzPC/FSS")
+endif()
 include_directories(${FSS_PATH}/src)
 include_directories(${FSS_PATH}/src/deps/cryptoTools)
 

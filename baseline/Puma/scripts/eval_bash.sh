@@ -4,7 +4,7 @@ show_help() {
     echo "  sh eval_bash.sh <test_name> [party_id]"
     echo
     echo "Description:"
-    echo "  This script builds and optionally runs secure computation tests using sti."
+    echo "  This script builds and optionally runs the Puma tests."
     echo
     echo "Arguments:"
     echo "  <test_name>     Required unless only building. Choose one of:"
@@ -49,15 +49,15 @@ make -j || { echo "[ERROR] make failed"; exit 1; }
 
 if [ $# -eq 1 ]; then
   echo "[INFO] Running test '$1' for all 3 parties..."
-  ./sti $1 0 &
+  ./puma $1 0 &
 
-  ./sti $1 1 &
+  ./puma $1 1 &
 
-  ./sti $1 2 &
+  ./puma $1 2 &
 
 elif [ $# -gt 1 ]; then
   echo "[INFO] Running test '$1' for party $2..."
-  ./sti $1 $2
+  ./puma $1 $2
 fi
 
 wait
