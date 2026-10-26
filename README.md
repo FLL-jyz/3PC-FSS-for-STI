@@ -7,10 +7,11 @@ This is project focuses on secure three-party computation (3PC) for Transformer 
 *   **`application/`**: Neural network layer implementations (`nn`).
 *   **`common/`**: Common utilities, including network communication, ring arithmetic, and math functions.
 *   **`crypto/`**: Cryptographic protocols (Arithmetic Secret Sharing, Replicated Secret Sharing).
+*   **`FSS/`**: The bundled Function Secret Sharing implementation used by the 3PC protocols. `FSS/include/` contains its public headers, `FSS/src/` contains the library implementation, and `FSS/third_party/cryptoTools/` contains the cryptoTools sources required to build it.
 *   **`secure_model/`**: Secure 3PC specific logic and party management.
 *   **`tests/`**: Test files for various models (CNN, LLM) and benchmarks.
 *   **`external/`**: External dependencies (e.g., `cnpy`).
-*   **`script/`**: Contains helper scripts like `eval_bash.sh`. 
+*   **`eval_bash.sh`**: Helper script for building and running the three-party tests.
 *   **`main.cpp`**: The main entry point for the executable.
 *   **`baseline/`**: Additional implementations used for comparison:
     *   **`baseline/Sigma/`**: Sigma implementation and evaluation code.
@@ -33,7 +34,7 @@ Running this project requires a Linux environment with the following dependencie
     *   [cnpy](https://github.com/rogersce/cnpy) (Integrated in `external/`)
     *   EzPC checkout in `../EzPC` by default, with `SCI/extern/eigen` available
 
-The FSS implementation and cryptoTools sources are included in `FSS/` and are built with this project. CMake reads Eigen from the adjacent EzPC checkout; it does not modify EzPC source files. Set `EZPC_ROOT` if your EzPC checkout is elsewhere.
+The FSS implementation and cryptoTools sources are included in `FSS/` and are built with this project. You do not need to copy or modify `FSS/` inside EzPC. CMake reads Eigen from the adjacent EzPC checkout and does not modify EzPC source files. Set `EZPC_ROOT` if your EzPC checkout is elsewhere.
 
 To install dependencies on Ubuntu:
 ```bash
@@ -42,6 +43,37 @@ sudo apt install build-essential cmake libssl-dev libomp-dev
 ```
 
 ## Compilation
+
+### EzPC and FSS configuration
+
+Place the EzPC checkout next to this repository so that the directory layout is:
+
+```text
+parent-directory/
+├── EzPC/
+└── 3PC-FSS-for-STI/
+```
+
+The EzPC checkout must contain `SCI/extern/eigen`. If the EzPC submodules have
+not been initialized yet, initialize them from the EzPC directory:
+
+```bash
+cd ../EzPC
+git submodule update --init --recursive
+cd ../3PC-FSS-for-STI
+```
+
+The root `CMakeLists.txt` adds the bundled `FSS/` directory and builds the
+`fss` static library from source. By default it looks for Eigen at
+`../EzPC/SCI/extern/eigen`. For another EzPC location, pass an absolute or
+relative path with `-DEZPC_ROOT`:
+
+```bash
+cmake -S . -B build -DEZPC_ROOT=/path/to/EzPC
+```
+
+No prebuilt `libfss.a` is required, and no source file under EzPC needs to be
+edited.
 
 You can build the project manually using standard CMake commands:
 
@@ -98,7 +130,7 @@ If you prefer to run manually after building:
 
 ## Supported Tests
 
-The `TFssformer` executable supports the following `test_name` arguments:
+The `Triforce` executable supports the following `test_name` arguments:
 
 | Test Name | Description |
 |-----------|-------------|
