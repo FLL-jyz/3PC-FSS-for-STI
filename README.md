@@ -31,6 +31,9 @@ Running this project requires a Linux environment with the following dependencie
     *   OpenMP
     *   OpenSSL
     *   [cnpy](https://github.com/rogersce/cnpy) (Integrated in `external/`)
+    *   EzPC checkout in `../EzPC` by default, with `SCI/extern/eigen` available
+
+The FSS implementation and cryptoTools sources are included in `FSS/` and are built with this project. CMake reads Eigen from the adjacent EzPC checkout; it does not modify EzPC source files. Set `EZPC_ROOT` if your EzPC checkout is elsewhere.
 
 To install dependencies on Ubuntu:
 ```bash
@@ -43,13 +46,11 @@ sudo apt install build-essential cmake libssl-dev libomp-dev
 You can build the project manually using standard CMake commands:
 
 ```bash
-mkdir build
-cd build
-cmake ..
-make -j
+cmake -S . -B build -DEZPC_ROOT=../EzPC
+cmake --build build -j
 ```
 
-This will generate the `TFssformer` executable in the `build/` directory.
+This will generate the `Triforce` executable in the `build/` directory.
 
 ## Running Tests
 
@@ -87,12 +88,12 @@ If you prefer to run manually after building:
 
 ```bash
 # General syntax
-./build/TFssformer <test_name> <party_id>
+./build/Triforce <test_name> <party_id>
 
 # Example: Running locally (requires 3 terminals)
-./build/TFssformer bench 0
-./build/TFssformer bench 1
-./build/TFssformer bench 2
+./build/Triforce bench 0
+./build/Triforce bench 1
+./build/Triforce bench 2
 ```
 
 ## Supported Tests

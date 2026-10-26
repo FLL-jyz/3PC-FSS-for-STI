@@ -47,14 +47,14 @@ make -j || { echo "[ERROR] make failed"; exit 1; }
 
 if [ $# -eq 1 ]; then
   echo "[INFO] Running test '$1' for all 3 parties..."
-  ./TFssformer $1 0 &
+  ./Triforce $1 0 &
 
-  ./TFssformer $1 1 &
+  ./Triforce $1 1 &
 
-  ./TFssformer $1 2 &
+  ./Triforce $1 2 &
 elif [ $# -gt 1 ]; then
   echo "[INFO] Running test '$1' for party $2..."
-  ./TFssformer $1 $2
+  ./Triforce $1 $2
 fi
 
 wait
